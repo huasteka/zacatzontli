@@ -31,12 +31,12 @@ With this, all dependencies will be installed at `node_modules` directory.
 There is further need to configuration on this project, just set the environment variables
 to run the application in production mode.
 
-## Tests
+## Run
 
-To execute all tests, open a terminal and execute:
+To run this applciation, open a terminal and execute:
 
 ```
-mvnw test
+npm run server
 ```
 
 ## License
