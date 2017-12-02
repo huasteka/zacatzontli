@@ -1,0 +1,46 @@
+# Zacatzontli
+
+[![Travis](https://img.shields.io/travis/murilocosta/zacatzontli.svg?style=flat-square)](https://travis-ci.org/murilocosta/zacatzontli)
+[![GitHub issues](https://img.shields.io/github/issues/murilocosta/zacatzontli.svg?style=flat-square)](https://github.com/murilocosta/yacatecuhtli/issues)
+[![Codacy grade](https://img.shields.io/codacy/grade/b324cad1175442aba9d46d20c9edad7e.svg?style=flat-square)](https://www.codacy.com/app/murilocosta/zacatzontli/dashboard)
+[![Codecov](https://img.shields.io/codecov/c/github/murilocosta/zacatzontli.svg?style=flat-square)](https://codecov.io/gh/murilocosta/zacatzontli)
+
+Zacatzontli is an open source lightweight authentication manager API developed with [Node JS](https://nodejs.org).
+
+## Setup
+
+The minimum requirements are:
+
+- [Mongo DB](https://www.mongodb.com) (>= 3.2)
+- [Node JS](https://nodejs.org) (~ 6.10.3)
+
+## Installation
+
+To download and build the project, open a terminal and execute:
+
+```
+git clone https://github.com/murilocosta/yacatecuhtli.git
+cd yacatecuhtli
+npm install
+```
+
+With this, all dependencies will be installed at `node_modules` directory.
+
+## Configuration
+
+There is further need to configuration on this project, just set the environment variables
+to run the application in production mode.
+
+## Tests
+
+To execute all tests, open a terminal and execute:
+
+```
+mvnw test
+```
+
+## License
+
+Zacatzontli is Copyright © 2017 Murilo Costa.
+
+It is free software, and may be redistributed under the terms specified in the [LICENSE.md](LICENSE.md)
