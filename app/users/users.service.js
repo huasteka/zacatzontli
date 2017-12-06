@@ -1,33 +1,23 @@
-const bcrypt = require('bcrypt');
-const Promise = require('bluebird');
+const bcrypt = require("bcrypt");
+const Promise = require("bluebird");
 
-const User = require('./users.model');
+const User = require("./users.model");
+const config = require("../config");
 
 class UserService {
   constructor(userSchema, bcrypt) {
     this.userSchema = userSchema;
     this.bcrypt = bcrypt;
+    this.bcryptSalt = config.passwordSalt;
   }
 
   createUser({name = null, email = null, password = null}) {
     return new Promise((resolve, reject) => {
       if (name && email && password) {
-        const encryptedPassword = this.bcrypt.hashSync(password, 10);
-        const q = (new User({name, email, password: encryptedPassword})).save();
+        const q = (new User({name, email, password: this.hashPassword(password)})).save();
         resolve(q);
       } else {
-        reject({type: 'invalid'});
-      }
-    });
-  }
-
-  changePassword(userId, newPassword, newPasswordConfirmation) {
-    return new Promise((resolve, reject) => {
-      if (newPassword === newPasswordConfirmation) {
-        const encryptedPassword = this.bcrypt.hashSync(newPassword, 10);
-        this.findAndUpdate(userId, {password: encryptedPassword}, resolve, reject);
-      } else {
-        reject({type: 'password'});
+        reject({type: "invalid"});
       }
     });
   }
@@ -37,7 +27,7 @@ class UserService {
       if (name) {
         this.findAndUpdate(userId, {name: name}, resolve, reject);
       } else {
-        reject({type: 'name'});
+        reject({type: "name"});
       }
     });
   }
@@ -47,6 +37,16 @@ class UserService {
       User.remove({_id: userId}, (err) => {
         err ? reject(err) : resolve();
       });
+    });
+  }
+
+  changePassword(userId, newPassword, newPasswordConfirmation) {
+    return new Promise((resolve, reject) => {
+      if (newPassword === newPasswordConfirmation) {
+        this.findAndUpdate(userId, {password: this.hashPassword(newPassword)}, resolve, reject);
+      } else {
+        reject({type: "password"});
+      }
     });
   }
 
@@ -61,12 +61,16 @@ class UserService {
   findAndUpdate(userId, setter, resolve, reject) {
     this.userSchema.findOneAndUpdate({_id: userId}, {$set: setter}, {new: true}, (err, user) => {
       if (err) {
-        reject({type: 'not_found'});
+        reject({type: "not_found"});
       } else {
         user.password = undefined;
         resolve(user);
       }
     });
+  }
+
+  hashPassword(password) {
+    return this.bcrypt.hashSync(password, this.bcryptSalt);
   }
 
   isValidPassword(user, rawPassword) {
