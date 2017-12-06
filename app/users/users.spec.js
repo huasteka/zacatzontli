@@ -62,7 +62,7 @@ describe("PUT /api/users/:userId", () => {
 
   let token = "";
 
-  before(done => {
+  before((done) => {
     authService.signUp(validUser).then((data) => {
       token = data.token;
       userService.findByEmail(validUser.email).then((user) => {
@@ -107,8 +107,8 @@ describe("PUT /api/users/:userId", () => {
       });
   });
 
-  after(done => {
-    User.remove({}, () => done())
+  after((done) => {
+    User.remove({}, () => done());
   });
 })
 ;
@@ -193,6 +193,18 @@ describe("POST /api/users/:userId/change-password", () => {
           chai.expect(isEqual).to.be.true;
           done();
         });
+      });
+  });
+
+  it("should return a 404 not found status", (done) => {
+    const updated = {password: "ch4ng3r", passwordConfirmation: "ch4ng3r"};
+    chai.request(server)
+      .post("/api/users/1/change-password")
+      .send(updated)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
       });
   });
 

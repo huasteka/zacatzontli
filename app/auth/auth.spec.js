@@ -40,7 +40,7 @@ describe("POST /api/auth/sign-in", () => {
     password: "wr0ng3r"
   };
 
-  before(done => {
+  before((done) => {
     User.remove({}, () => {
       new User({
         email: validUser.email,

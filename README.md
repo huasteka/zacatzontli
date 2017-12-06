@@ -31,7 +31,6 @@ With this, all dependencies will be installed at `node_modules` directory.
 Change the default values at `app/config.js` or set the required environment variables:
 
 ```
-SERVER_PORT=[express_server_port]
 MONGO_CONNECTION_URL=[mongo_db_connection_url]
 JWT_SECRET_KEY=[jwt_secret_key]
 BCRYPT_PASSWORD_SALT=[bcrypt_password_salt]
