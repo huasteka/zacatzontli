@@ -28,15 +28,21 @@ With this, all dependencies will be installed at `node_modules` directory.
 
 ## Configuration
 
-There is further need to configuration on this project, just set the environment variables
-to run the application in production mode.
-
-## Run
-
-To run this applciation, open a terminal and execute:
+Change the default values at `app/config.js` or set the required environment variables:
 
 ```
-npm run server
+SERVER_PORT=[express_server_port]
+MONGO_CONNECTION_URL=[mongo_db_connection_url]
+JWT_SECRET_KEY=[jwt_secret_key]
+BCRYPT_PASSWORD_SALT=[bcrypt_password_salt]
+```
+
+## Tests
+
+To execute all tests, open a terminal and execute:
+
+```
+npm test
 ```
 
 ## License
