@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "7"
+  - "6"
+services:
+  - mongodb
+install:
+  - npm install -g istanbul
+script:
+  - npm run coverage
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
