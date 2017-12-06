@@ -25,7 +25,7 @@ class UserService {
   updateUser(userId, name) {
     return new Promise((resolve, reject) => {
       if (name) {
-        this.findAndUpdate(userId, {name: name}, resolve, reject);
+        this.findAndUpdate(userId, {name}, resolve, reject);
       } else {
         reject({type: "name"});
       }
@@ -55,7 +55,7 @@ class UserService {
   }
 
   findByEmail(email) {
-    return this.userSchema.findOne({email: email});
+    return this.userSchema.findOne({email});
   }
 
   findAndUpdate(userId, setter, resolve, reject) {

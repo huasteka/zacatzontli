@@ -9,7 +9,7 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("POST /api/auth/sign-up", () => {
-  beforeEach(done => {
+  beforeEach((done) => {
     User.remove({}, () => done());
   });
 

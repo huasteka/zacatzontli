@@ -39,7 +39,7 @@ class AuthService {
   signIn({email, password}) {
     return new Promise((resolve, reject) => {
       this.userService.findByEmail(email)
-        .then(user => {
+        .then((user) => {
           if (this.userService.isValidPassword(user, password)) {
             resolve(this.createAuthToken(user));
           } else {
@@ -52,7 +52,7 @@ class AuthService {
 
   createAuthToken(user) {
     const token = this.jwt.sign({user_id: user.id}, this.jwtOptions.secretOrKey, {expiresIn: "12h"});
-    return {token: token};
+    return {token};
   }
 }
 

@@ -18,7 +18,7 @@ describe("GET /api/users/:userId", () => {
 
   let token = "";
 
-  before(done => {
+  before((done) => {
     authService.signUp(validUser).then((data) => {
       token = data.token;
       userService.findByEmail(validUser.email).then((user) => {
@@ -48,8 +48,8 @@ describe("GET /api/users/:userId", () => {
       });
   });
 
-  after(done => {
-    User.remove({}, () => done())
+  after((done) => {
+    User.remove({}, () => done());
   });
 });
 
@@ -122,7 +122,7 @@ describe("DELETE /api/users/:userId", () => {
 
   let token = "";
 
-  beforeEach(done => {
+  beforeEach((done) => {
     authService.signUp(validUser).then((data) => {
       token = data.token;
       userService.findByEmail(validUser.email).then((user) => {
@@ -188,7 +188,7 @@ describe("POST /api/users/:userId/change-password", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         res.should.have.status(200);
-        userService.findByEmail(validUser.email).then(user => {
+        userService.findByEmail(validUser.email).then((user) => {
           const isEqual = userService.isValidPassword(user, updated.password);
           chai.expect(isEqual).to.be.true;
           done();

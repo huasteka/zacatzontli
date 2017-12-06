@@ -2,6 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/murilocosta/zacatzontli.svg?style=flat-square)](https://travis-ci.org/murilocosta/zacatzontli)
 [![GitHub issues](https://img.shields.io/github/issues/murilocosta/zacatzontli.svg?style=flat-square)](https://github.com/murilocosta/zacatzontli/issues)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/04f5303d431d4b5d946413be4c19bafe)](https://www.codacy.com/app/murilocosta/zacatzontli?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=murilocosta/zacatzontli&amp;utm_campaign=Badge_Grade)
 
 Zacatzontli is an open source lightweight authentication manager API developed with [Node JS](https://nodejs.org).
 

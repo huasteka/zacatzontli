@@ -13,10 +13,10 @@ class UserController {
   updateUserAction(req, res) {
     const { name = null } = req.body;
     userService.updateUser(req.params.userId, name)
-      .then(user => res.json(user))
+      .then((user) => res.json(user))
       .catch((err) => {
         if (err && err.type === "name") {
-          res.sendStatus(422)
+          res.sendStatus(422);
         } else {
           res.sendStatus(404);
         }
