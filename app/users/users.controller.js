@@ -1,6 +1,11 @@
 const userService = require("./users.service");
 
 class UserController {
+  findByTokenAction(req, res) {
+    req.user.password = undefined;
+    res.send(req.user);
+  }
+
   findByIdAction(req, res) {
     userService.findById(req.params.userId)
       .then((user) => {

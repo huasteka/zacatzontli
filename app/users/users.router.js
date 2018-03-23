@@ -5,6 +5,7 @@ const userController = require("./users.controller");
 
 const router = expressRouter();
 router.use(passport.authenticate("jwt", {session: false}));
+router.get("/profile", userController.findByTokenAction);
 router.get("/:userId", userController.findByIdAction);
 router.put("/:userId", userController.updateUserAction);
 router.delete("/:userId", userController.deleteUserAction);
