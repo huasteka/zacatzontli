@@ -2,6 +2,7 @@ const passport = require("passport");
 
 const authService = require("./auth.service");
 authService.registerPassportStrategy(passport);
+const responseFormatter = require("../response.formatter");
 
 class AuthController {
   signUpAction(req, res) {
@@ -9,8 +10,8 @@ class AuthController {
       .then((data) => {
         res.status(201).json(data);
       })
-      .catch(() => {
-        res.sendStatus(401);
+      .catch((error) => {
+        res.status(400).json(responseFormatter.formatErrors(error));
       });
   }
 
@@ -20,7 +21,8 @@ class AuthController {
         res.status(200).json(data);
       })
       .catch(() => {
-        res.sendStatus(401);
+        const error = responseFormatter.formatError(401, "unauthorized", "Credentials are incorrect");
+        res.status(401).json(responseFormatter.formatErrors(error));
       });
   }
 }

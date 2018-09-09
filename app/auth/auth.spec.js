@@ -27,6 +27,17 @@ describe("POST /api/auth/sign-up", () => {
         done();
       });
   });
+
+  it("should return a 400 bad request status", (done) => {
+    const invalidUser = {};
+    chai.request(server)
+      .post("/api/auth/sign-up")
+      .send(invalidUser)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
 });
 
 describe("POST /api/auth/sign-in", () => {

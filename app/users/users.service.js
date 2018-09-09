@@ -3,6 +3,7 @@ const Promise = require("bluebird");
 
 const User = require("./users.model");
 const config = require("../config");
+const responseFormatter = require("../response.formatter");
 
 class UserService {
   constructor(userSchema, bcrypt) {
@@ -17,7 +18,7 @@ class UserService {
         const q = (new User({name, email, password: this.hashPassword(password)})).save();
         resolve(q);
       } else {
-        reject({type: "invalid"});
+        reject(responseFormatter.formatError(400, "invalid_user", "Invalid user data"));
       }
     });
   }
@@ -27,7 +28,7 @@ class UserService {
       if (name) {
         this.findAndUpdate(userId, {name}, resolve, reject);
       } else {
-        reject({type: "name"});
+        reject(responseFormatter.formatError(400, "invalid_user_name", "Invalid user name"));
       }
     });
   }
@@ -35,7 +36,8 @@ class UserService {
   deleteUser(userId) {
     return new Promise((resolve, reject) => {
       User.remove({_id: userId}, (err) => {
-        err ? reject(err) : resolve();
+        const error = responseFormatter.formatError(400, "invalid_user_id", "Invalid user ID");
+        err ? reject(error) : resolve();
       });
     });
   }
@@ -45,13 +47,21 @@ class UserService {
       if (newPassword === newPasswordConfirmation) {
         this.findAndUpdate(userId, {password: this.hashPassword(newPassword)}, resolve, reject);
       } else {
-        reject({type: "password"});
+        reject(responseFormatter.formatError(400, "invalid_user_password", "Invalid user password"));
       }
     });
   }
 
   findById(userId) {
-    return this.userSchema.findById(userId);
+    return new Promise((resolve, reject) => {
+      this.userSchema
+        .findById(userId)
+        .then(resolve)
+        .catch(function () {
+          const err = responseFormatter.formatError(400, "user_not_found", "User was not found");
+          reject(err);
+        });
+    });
   }
 
   findByEmail(email) {
@@ -61,7 +71,7 @@ class UserService {
   findAndUpdate(userId, setter, resolve, reject) {
     this.userSchema.findOneAndUpdate({_id: userId}, {$set: setter}, {new: true}, (err, user) => {
       if (err) {
-        reject({type: "not_found"});
+        reject(responseFormatter.formatError(400, "user_not_exists", "User does not exists"));
       } else {
         user.password = undefined;
         resolve(user);

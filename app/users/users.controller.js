@@ -1,4 +1,5 @@
 const userService = require("./users.service");
+const responseFormatter = require("../response.formatter");
 
 class UserController {
   findByTokenAction(req, res) {
@@ -20,18 +21,14 @@ class UserController {
     userService.updateUser(req.params.userId, name)
       .then((user) => res.json(user))
       .catch((err) => {
-        if (err && err.type === "name") {
-          res.sendStatus(422);
-        } else {
-          res.sendStatus(404);
-        }
+        res.status(err.status).json(responseFormatter.formatErrors(err));
       });
   }
 
   deleteUserAction(req, res) {
     userService.deleteUser(req.params.userId)
       .then(() => res.sendStatus(200))
-      .catch(() => res.sendStatus(404));
+      .catch((err) => res.status(err.status).json(responseFormatter.formatErrors(err)));
   }
 
   changePaswordAction(req, res) {
@@ -41,11 +38,7 @@ class UserController {
         res.json(data);
       })
       .catch((err) => {
-        if (err && err.type === "password") {
-          res.sendStatus(422);
-        } else {
-          res.sendStatus(404);
-        }
+        res.status(err.status).json(responseFormatter.formatErrors(err));
       });
   }
 }

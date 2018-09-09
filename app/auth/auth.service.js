@@ -6,6 +6,7 @@ const StrategyJwt = passportJWT.Strategy;
 
 const config = require("../config");
 const userService = require("../users/users.service");
+const responseFormatter = require("../response.formatter");
 
 class AuthService {
   constructor(jwt, userService, config) {
@@ -21,7 +22,10 @@ class AuthService {
     const strategy = new StrategyJwt(this.jwtOptions, (jwtPayload, next) => {
       this.userService.findById(jwtPayload.user_id)
         .then((user) => next(null, user))
-        .catch((err) => next(err, false));
+        .catch(function () {
+          const err = responseFormatter.formatError(401, "unauthorized", "Unauthorized");
+          next(err, false);
+        });
     });
     passport.use(strategy);
   }
@@ -32,7 +36,7 @@ class AuthService {
         .then((user) => {
           resolve(this.createAuthToken(user));
         })
-        .catch((err) => reject(err));
+        .catch(reject);
     });
   }
 
@@ -43,15 +47,17 @@ class AuthService {
           if (this.userService.isValidPassword(user, password)) {
             resolve(this.createAuthToken(user));
           } else {
-            reject({type: "password"});
+            reject(responseFormatter.formatError(401, "unauthorized", "Credentials are incorrect"));
           }
         })
-        .catch((err) => reject(err));
+        .catch(reject);
     });
   }
 
   createAuthToken(user) {
-    const token = this.jwt.sign({user_id: user.id}, this.jwtOptions.secretOrKey, {expiresIn: "12h"});
+    const tokenUser = {user_id: user.id};
+    const tokenExpiry = {expiresIn: "12h"};
+    const token = this.jwt.sign(tokenUser, this.jwtOptions.secretOrKey, tokenExpiry);
     return {token};
   }
 }
