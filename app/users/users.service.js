@@ -80,7 +80,8 @@ class UserService {
   }
 
   hashPassword(password) {
-    return this.bcrypt.hashSync(password, this.bcryptSalt);
+    const salt = this.bcrypt.genSaltSync(this.bcryptSalt);
+    return this.bcrypt.hashSync(password, salt);
   }
 
   isValidPassword(user, rawPassword) {
