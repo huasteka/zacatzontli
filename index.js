@@ -25,7 +25,7 @@ app.use("/api/users", usersRouter);
 
 app.all("/api/*", function (req, res) {
   const error = responseFormatter.formatError(405, "method_not_allowed", "Method Not Allowed");
-  res.json(responseFormatter.formatErrors(error))
+  res.json(responseFormatter.formatErrors(error));
 });
 
 app.all("/*", function (req, res) {

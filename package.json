@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/murilocosta/zacatzontli.git"
+    "url": "https://github.com/huasteka/zacatzontli.git"
   },
   "keywords": [
     "authentication",
@@ -26,9 +26,9 @@
   ],
   "license": "GPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/murilocosta/zacatzontli/issues"
+    "url": "https://github.com/huasteka/zacatzontli/issues"
   },
-  "homepage": "https://github.com/murilocosta/zacatzontli#readme",
+  "homepage": "https://github.com/huasteka/zacatzontli#readme",
   "dependencies": {
     "apidoc": "~0.17.5",
     "bcrypt": "~3.0.3",
@@ -44,9 +44,9 @@
   "devDependencies": {
     "chai": "~4.1.2",
     "chai-http": "~3.0.0",
-    "codacy-coverage": "^2.0.3",
+    "codacy-coverage": "~2.0.3",
     "mocha": "~4.0.1",
-    "mocha-lcov-reporter": "^1.3.0",
+    "mocha-lcov-reporter": "~1.3.0",
     "nodemon": "~1.12.1"
   },
   "apidoc": {

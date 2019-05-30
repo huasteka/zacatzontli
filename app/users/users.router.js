@@ -4,7 +4,7 @@ const passport = require("passport");
 const userController = require("./users.controller");
 
 const router = expressRouter();
-router.use(passport.authenticate("jwt", {session: false}));
+router.use(passport.authenticate("jwt", { session: false }));
 
 /**
  * @api {get} /users/profile Fetch user profile

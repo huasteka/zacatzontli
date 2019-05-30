@@ -3,14 +3,14 @@ const responseFormatter = require("../response.formatter");
 
 class UserController {
   findByTokenAction(req, res) {
-    req.user.password = undefined;
+    req.user.password = null;
     res.send(req.user);
   }
 
   findByIdAction(req, res) {
     userService.findById(req.params.userId)
       .then((user) => {
-        user.password = undefined;
+        user.password = null;
         res.json(user);
       })
       .catch(() => res.sendStatus(404));
