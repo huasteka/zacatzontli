@@ -40,7 +40,7 @@ class AuthService {
     });
   }
 
-  signIn({email, password}) {
+  signIn({ email, password }) {
     return new Promise((resolve, reject) => {
       this.userService.findByEmail(email)
         .then((user) => {
@@ -55,10 +55,10 @@ class AuthService {
   }
 
   createAuthToken(user) {
-    const tokenUser = {user_id: user.id};
-    const tokenExpiry = {expiresIn: "12h"};
+    const tokenUser = { "user_id": user.id };
+    const tokenExpiry = { expiresIn: "12h" };
     const token = this.jwt.sign(tokenUser, this.jwtOptions.secretOrKey, tokenExpiry);
-    return {token};
+    return { token };
   }
 }
 

@@ -12,10 +12,10 @@ class UserService {
     this.bcryptSalt = config.passwordSalt;
   }
 
-  createUser({name = null, email = null, password = null}) {
+  createUser({ name = null, email = null, password = null }) {
     return new Promise((resolve, reject) => {
       if (name && email && password) {
-        const q = (new User({name, email, password: this.hashPassword(password)})).save();
+        const q = (new User({ name, email, password: this.hashPassword(password) })).save();
         resolve(q);
       } else {
         reject(responseFormatter.formatError(400, "invalid_user", "Invalid user data"));
@@ -26,7 +26,7 @@ class UserService {
   updateUser(userId, name) {
     return new Promise((resolve, reject) => {
       if (name) {
-        this.findAndUpdate(userId, {name}, resolve, reject);
+        this.findAndUpdate(userId, { name }, resolve, reject);
       } else {
         reject(responseFormatter.formatError(400, "invalid_user_name", "Invalid user name"));
       }
@@ -35,7 +35,7 @@ class UserService {
 
   deleteUser(userId) {
     return new Promise((resolve, reject) => {
-      User.remove({_id: userId}, (err) => {
+      User.remove({ _id: userId }, (err) => {
         const error = responseFormatter.formatError(400, "invalid_user_id", "Invalid user ID");
         err ? reject(error) : resolve();
       });
@@ -45,7 +45,7 @@ class UserService {
   changePassword(userId, newPassword, newPasswordConfirmation) {
     return new Promise((resolve, reject) => {
       if (newPassword === newPasswordConfirmation) {
-        this.findAndUpdate(userId, {password: this.hashPassword(newPassword)}, resolve, reject);
+        this.findAndUpdate(userId, { password: this.hashPassword(newPassword) }, resolve, reject);
       } else {
         reject(responseFormatter.formatError(400, "invalid_user_password", "Invalid user password"));
       }
@@ -65,11 +65,11 @@ class UserService {
   }
 
   findByEmail(email) {
-    return this.userSchema.findOne({email});
+    return this.userSchema.findOne({ email });
   }
 
   findAndUpdate(userId, setter, resolve, reject) {
-    this.userSchema.findOneAndUpdate({_id: userId}, {$set: setter}, {new: true}, (err, user) => {
+    this.userSchema.findOneAndUpdate({ _id: userId }, { $set: setter }, { new: true }, (err, user) => {
       if (err) {
         reject(responseFormatter.formatError(400, "user_not_exists", "User does not exists"));
       } else {
