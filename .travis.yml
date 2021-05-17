@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - "7"
-  - "6"
-services:
-  - mongodb
+  - "16"
+  - "15"
 install:
   - npm install
 before_script:
