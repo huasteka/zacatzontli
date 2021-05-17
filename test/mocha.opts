@@ -1,0 +1,2 @@
+--check-leaks
+--globals '_' 'sails' 'match' 'User' 'Archive'
