@@ -49,11 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-postgresql',
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: 'postgres',
-    database: 'zacatzontli_development'
+    url: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/zacatzontli_development'
   },
 
 
