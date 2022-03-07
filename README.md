@@ -11,8 +11,9 @@ Zacatzontli is an open source lightweight authentication manager API developed w
 
 The minimum requirements are:
 
-- [Mongo DB](https://www.mongodb.com) (>= 3.2)
+- [PostgreSQL](http://www.postgresql.org) (>= 9.3)
 - [Node JS](https://nodejs.org) (~ 6.10.3)
+- [Sails JS](https://sailsjs.com/) (~ 1.4.2)
 
 ## Installation
 
@@ -28,10 +29,10 @@ With this, all dependencies will be installed at `node_modules` directory.
 
 ## Configuration
 
-Change the default values at `app/config.js` or set the required environment variables:
+Change the default values at `config/datastores.js` or set the required environment variables:
 
 ```
-MONGO_CONNECTION_URL=[mongo_db_connection_url]
+DATABASE_URL=[postgres_db_connection_url]
 JWT_SECRET_KEY=[jwt_secret_key]
 BCRYPT_PASSWORD_SALT=[bcrypt_password_salt]
 ```

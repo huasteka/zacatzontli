@@ -1,9 +1,15 @@
 /**
  * @api {post} /users/:userId/change-password Change user password
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup User
  * @apiName UpdateUserPassword
  * @apiHeader {String} Authorization Generated JWT token
+ *
+ * @apiParam {Number} userId
+ * @apiBody {String} password
+ * @apiBody {String} passwordConfirmation
+ * @apiUse UserModel
+ * @apiUse ErrorHandler
  */
 module.exports = {
   friendlyName: 'Update password',

@@ -1,3 +1,11 @@
+/**
+ * @apiDefine UserModel
+ * @apiSuccess (200) {Number} id
+ * @apiSuccess (200) {String} name
+ * @apiSuccess (200) {String} email
+ * @apiSuccess (200) {Date} createdAt
+ * @apiSuccess (200) {Date} updatedAt
+ */
 module.exports = {
   tableName: 'users',
 

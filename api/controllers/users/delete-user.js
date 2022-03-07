@@ -1,9 +1,12 @@
 /**
  * @api {delete} /users/:userId Delete user
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup User
  * @apiName DeleteUser
  * @apiHeader {String} Authorization Generated JWT token
+ *
+ * @apiParam {Number} userId
+ * @apiUse ErrorHandler
  */
 module.exports = {
   friendlyName: 'Delete user',

@@ -1,9 +1,12 @@
 /**
  * @api {get} /users/profile Fetch user profile
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup User
  * @apiName FetchUserProfile
  * @apiHeader {String} Authorization Generated JWT token
+ *
+ * @apiUse UserModel
+ * @apiUse ErrorHandler
  */
 module.exports = {
   friendlyName: 'Get profile',
