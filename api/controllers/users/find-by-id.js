@@ -1,9 +1,13 @@
 /**
  * @api {get} /users/:userId Fetch user
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup User
  * @apiName FetchUser
  * @apiHeader {String} Authorization Generated JWT token
+ *
+ * @apiParam {Number} userId
+ * @apiUse UserModel
+ * @apiUse ErrorHandler
  */
 module.exports = {
   friendlyName: 'Find user by ID',

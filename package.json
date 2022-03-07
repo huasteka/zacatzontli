@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "@sailshq/lodash": "~3.10.3",
-    "apidoc": "~0.27.1",
+    "apidoc": "~0.50.1",
     "bcrypt": "~5.0.1",
     "jsonwebtoken": "~8.5.1",
     "passport": "~0.4.1",
@@ -34,12 +34,13 @@
     "codacy-coverage": "./bin/codacy-coverage.js"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/apidoc -i ./api -o ./assets",
+    "postinstall": "npm run apidoc",
     "start": "node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "node ./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "./node_modules/.bin/mocha test/**/*.spec.js",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --timeout 30000 --reporter spec ./test/**/*.spec.js"
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --timeout 30000 --reporter spec ./test/**/*.spec.js",
+    "apidoc": "./node_modules/.bin/apidoc -i ./api -o ./assets"
   },
   "main": "app.js",
   "repository": {
@@ -48,10 +49,6 @@
   },
   "bugs": {
     "url": "https://github.com/murilocosta/zacatzontli/issues"
-  },
-  "apidoc": {
-    "title": "Zacatzontli",
-    "url": "https://zacatzontli.herokuapp.com/api"
   },
   "license": "GPL-3.0-only",
   "engines": {

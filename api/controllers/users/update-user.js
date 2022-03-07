@@ -1,9 +1,14 @@
 /**
  * @api {put} /users/:userId Update account
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup User
  * @apiName UpdateUser
  * @apiHeader {String} Authorization Generated JWT token
+ *
+ * @apiParam {Number} userId
+ * @apiBody {String} name
+ * @apiUse UserModel
+ * @apiUse ErrorHandler
  */
 module.exports = {
   friendlyName: 'Update user',

@@ -1,15 +1,13 @@
 /**
  * @api {post} /auth/sign-up Register user
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup Auth
  * @apiName SignUp
  *
- * @apiParam {String} name
- * @apiParam {String} email
- * @apiParam {String} password
- *
- * @apiSuccess {String} token Generated JWT token
- *
+ * @apiBody {String} name
+ * @apiBody {String} email
+ * @apiBody {String} password
+ * @apiSuccess (201) {String} token Generated JWT token
  * @apiUse ErrorHandler
  */
 module.exports = {

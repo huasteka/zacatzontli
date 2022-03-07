@@ -1,14 +1,12 @@
 /**
  * @api {post} /auth/sign-in Authenticate user
- * @apiVersion 1.0.0
+ * @apiVersion 2.0.0
  * @apiGroup Auth
  * @apiName SignIn
  *
- * @apiParam {String} email
- * @apiParam {String} password
- *
- * @apiSuccess {String} token Generated JWT token
- *
+ * @apiBody {String} email
+ * @apiBody {String} password
+ * @apiSuccess (200) {String} token Generated JWT token
  * @apiUse ErrorHandler
  */
 module.exports = {
