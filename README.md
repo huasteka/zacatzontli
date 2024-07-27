@@ -12,7 +12,7 @@ Zacatzontli is an open source lightweight authentication manager API developed w
 The minimum requirements are:
 
 - [PostgreSQL](http://www.postgresql.org) (>= 9.3)
-- [Node JS](https://nodejs.org) (~ 6.10.3)
+- [Node JS](https://nodejs.org) (~ 14.21.3)
 - [Sails JS](https://sailsjs.com/) (~ 1.4.2)
 
 ## Installation
@@ -43,6 +43,14 @@ To execute all tests, open a terminal and execute:
 
 ```
 npm test
+```
+
+## Run
+
+To run the server, open a terminal and execute:
+
+```
+node app.js
 ```
 
 ## License

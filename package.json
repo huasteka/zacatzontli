@@ -52,6 +52,6 @@
   },
   "license": "GPL-3.0-only",
   "engines": {
-    "node": "~14.16"
+    "node": "~14.21.3"
   }
 }
