@@ -14,7 +14,7 @@
     "apidoc": "~0.50.1",
     "bcrypt": "~5.0.1",
     "jsonwebtoken": "~8.5.1",
-    "passport": "~0.4.1",
+    "passport": "~0.6.0",
     "passport-jwt": "~4.0.0",
     "sails": "~1.5.11",
     "sails-hook-orm": "~3.0.2",
