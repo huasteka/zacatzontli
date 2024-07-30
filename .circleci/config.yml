@@ -11,12 +11,12 @@ jobs:
   build-and-test:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+    executor:
+      name: node/default
+      tag: "14.21.3"
+
     environment:
       CC_TEST_REPORTER_ID: 282a6f2558f2dca5b1d7ff0bb88edf1b2fa385a014e0e52697a74c5fe3fe3573
-    docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
 
     # Add steps to the job
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
@@ -25,20 +25,18 @@ jobs:
       - checkout  
       - node/install-packages:
           pkg-manager: npm
+          override-ci-command: npm install
+      - run:
+          name: "Download Istanbul"
+          command: "npm install -g istanbul"
+      - run:
+          name: "Generate Coverage Report"
+          command: "npm run coverage"
       - run:
           name: "Setup Code Climate"
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-      - run:
-          name: "Download Istanbul"
-          command: "npm install -g istanbul"
-      - run:
-          name: "Download Dependencies"
-          command: "npm install"
-      - run:
-          name: "Generate Coverage Report"
-          command: "npm run coverage"
       - run:
           name: "Upload Coverage Report"
           command: |

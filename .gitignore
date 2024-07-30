@@ -117,6 +117,7 @@ dump.rdb
 
 npm-debug.log
 lib-cov
+coverage
 *.seed
 *.log
 *.out
