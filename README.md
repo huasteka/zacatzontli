@@ -1,9 +1,8 @@
 # Zacatzontli
 
-[![Travis](https://img.shields.io/travis/huasteka/zacatzontli.svg?style=flat-square)](https://travis-ci.org/huasteka/zacatzontli)
-[![GitHub issues](https://img.shields.io/github/issues/huasteka/zacatzontli.svg?style=flat-square)](https://github.com/huasteka/zacatzontli/issues)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/04f5303d431d4b5d946413be4c19bafe)](https://www.codacy.com/app/huasteka/zacatzontli?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=huasteka/zacatzontli&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/04f5303d431d4b5d946413be4c19bafe)](https://www.codacy.com/app/huasteka/zacatzontli?utm_source=github.com&utm_medium=referral&utm_content=huasteka/zacatzontli&utm_campaign=Badge_Coverage)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/huasteka/zacatzontli/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/huasteka/zacatzontli/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6b16f41e717e501d6fbc/maintainability)](https://codeclimate.com/github/huasteka/zacatzontli/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6b16f41e717e501d6fbc/test_coverage)](https://codeclimate.com/github/huasteka/zacatzontli/test_coverage)
 
 Zacatzontli is an open source lightweight authentication manager API developed with [Node JS](https://nodejs.org).
 
