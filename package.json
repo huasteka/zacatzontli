@@ -13,7 +13,7 @@
     "@sailshq/lodash": "~3.10.3",
     "apidoc": "~0.50.1",
     "bcrypt": "~5.0.1",
-    "jsonwebtoken": "~8.5.1",
+    "jsonwebtoken": "~9.0.0",
     "passport": "~0.4.1",
     "passport-jwt": "~4.0.0",
     "sails": "~1.5.11",
