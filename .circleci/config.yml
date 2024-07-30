@@ -1,0 +1,52 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2.0
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  build-and-test:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+    executor:
+      name: node/default
+      tag: "14.21.3"
+
+    environment:
+      CC_TEST_REPORTER_ID: 282a6f2558f2dca5b1d7ff0bb88edf1b2fa385a014e0e52697a74c5fe3fe3573
+
+    # Add steps to the job
+    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      # Checkout the code as the first step.
+      - checkout  
+      - node/install-packages:
+          pkg-manager: npm
+          override-ci-command: npm install
+      - run:
+          name: "Download Istanbul"
+          command: "npm install -g istanbul"
+      - run:
+          name: "Generate Coverage Report"
+          command: "npm run coverage"
+      - run:
+          name: "Setup Code Climate"
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: "Upload Coverage Report"
+          command: |
+            ./cc-test-reporter format-coverage -t lcov -o ./coverage/codeclimate.json ./coverage/lcov.info
+            ./cc-test-reporter upload-coverage -i ./coverage/codeclimate.json
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  build-and-test-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - build-and-test

@@ -25,22 +25,25 @@
   "devDependencies": {
     "chai": "~4.3.4",
     "chai-http": "~4.3.0",
-    "codacy-coverage": "~3.4.0",
     "eslint": "5.16.0",
+    "istanbul": "^0.4.5",
     "mocha": "~8.4.0",
     "mocha-lcov-reporter": "~1.3.0"
   },
   "bin": {
-    "codacy-coverage": "./bin/codacy-coverage.js"
+    "apidoc": "./node_modules/.bin/apidoc",
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "istanbul": "./node_modules/.bin/istanbul",
+    "mocha": "./node_modules/.bin/mocha"
   },
   "scripts": {
     "postinstall": "npm run apidoc",
     "start": "node app.js",
-    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
-    "lint": "node ./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "./node_modules/.bin/mocha test/**/*.spec.js",
+    "test": "npm run lint && npm run spec && echo 'Done.'",
+    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "spec": "mocha test/**/*.spec.js",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --timeout 30000 --reporter spec ./test/**/*.spec.js",
-    "apidoc": "./node_modules/.bin/apidoc -i ./api -o ./assets"
+    "apidoc": "apidoc -i ./api -o ./assets"
   },
   "main": "app.js",
   "repository": {
